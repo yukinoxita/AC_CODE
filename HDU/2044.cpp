@@ -3,6 +3,10 @@ long long int n;
 int a,b;
 long long int ans[50];
 int sit = 4;
+/*
+算法:递归
+思路：任何形式都能转化成 1 -> n
+*/
 int main()
 {
     int i;

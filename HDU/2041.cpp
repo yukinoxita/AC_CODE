@@ -3,6 +3,9 @@
 int n;
 int a[42];
 int sit = 3;//记录当前算到的答案的最高点
+/*
+算法:递归
+*/
 void keisan(int num)
 {
     int i;
