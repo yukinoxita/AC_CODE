@@ -1,3 +1,6 @@
+/*
+ *title : 和为给定数
+ * */
 #include <cstdio>
 #include <algorithm>
 using namespace std;

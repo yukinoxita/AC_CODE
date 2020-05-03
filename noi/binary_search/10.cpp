@@ -1,3 +1,6 @@
+/*
+ *title : 河中跳房子
+ * */
 #include <cstdio>
 int L,n,m;
 int a[50020];
