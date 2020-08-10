@@ -7,10 +7,16 @@ Pid     : 2010
 #include <cstdio>
 
 #define scnaf scanf
+/*
+根据题目想要回文那一定是和年份回文
+我们可以根据d1到d2进行循环，构造回
+文然后判断是否为有效日期并在范围内
+*/
 int n;
 int d1,d2;
 int re(int num)
 {
+    //倒序输出数字
     int a,b,c,d;
     a = num % 10;
     num /= 10;
@@ -40,7 +46,6 @@ bool nichi(int year,int mon,int num)
     {
         if(is_run(year)  && num > 29)return 0;
         if(!is_run(year) && num > 28)return 0;
-
     }
     return 1;
 }
