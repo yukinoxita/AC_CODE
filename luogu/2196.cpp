@@ -1,60 +1,70 @@
+/*
+Author  : yukki
+Time    : 2020.8.20
+OJ      : luogu
+Pid     : 2196
+ */
 #include <cstdio>
 /*
 f[i] = max{f[j]} + a[i];
 f[i] 表示第i个为终点的时候挖地雷的最大值
-
 */
-bool toori[21][21];
 int n;
-int a[21];
-int f[21];
-int ans[21];
-int max;
-int t;
+int max(int x,int y){return x>y?x:y;}
+bool map[30][30];
+int a[30];
+int pre[30];
+int f[30];
 void print(int pos)
 {
-    if(ans[pos] == 0)
+    if(pre[pos] == 0)
     {
-        printf("%d", pos);
-        return ;
+        printf("%d",pos);
+        return;
     }
-    print(ans[pos]);
+    print(pre[pos]);
     printf(" %d",pos);
 }
 int main()
 {
     register int i,j;
- //   freopen("1.in","r",stdin);
+    freopen("in","r",stdin);
     scanf("%d",&n);
-    for(i=1;i<=n;i++){scanf("%d",&a[i]);}//f[i] = a[i];}
+    for(i=1;i<=n;i++)scanf("%d",&a[i]);
     for(i=1;i<n;i++)
     {
         for(j=i+1;j<=n;j++)
         {
             int tmp;
             scanf("%d",&tmp);
-            if(tmp)toori[i][j] = 1;
+            if(tmp == 0)map[i][j] = 0;
+            else map[i][j] = 1;
         }
     }
-
-    for(i=1;i<=n;i++)
+    f[1] = a[1];
+    int last_point;
+    int maxx = 0;
+    for(i=2;i<=n;i++)
     {
-        for(j=1;j<=n;j++)
+        for(j=1;j<i;j++)
         {
-            if(toori[j][i] && f[j]>f[i])
+            if(!map[j][i])continue;
+            //符合就刷新
+            if(f[i] < f[j] + a[i])
             {
                 f[i] = f[j];
-                ans[i] = j;
+                pre[i] = j;
             }
         }
-        f[i] += a[i];
-        if(max < f[i])
+        f[i] += a[i];//最后才能加
+        if(maxx < f[i])
         {
-            max = f[i];
-            t = i;
+            maxx = f[i];
+            last_point = i;
         }
     }
-    print(t);
-    printf("\n%d\n",max);
-    return 0;
+    print(last_point);
+    printf("\n%d\n",maxx);
+	return 0;
 }
+
